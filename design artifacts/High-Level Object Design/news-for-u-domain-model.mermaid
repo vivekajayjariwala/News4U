@@ -1,0 +1,161 @@
+classDiagram
+    class User {
+        +UUID userId
+        +String email
+        +String passwordHash
+        +DateTime createdAt
+        +DateTime lastLoginAt
+        +Boolean isVerified
+        +Boolean isActive
+        +register()
+        +login()
+        +resetPassword()
+        +deleteAccount()
+    }
+
+    class UserProfile {
+        +UUID profileId
+        +UUID userId
+        +List~String~ preferredTopics
+        +String complexityPreference
+        +Boolean highContrastMode
+        +Integer fontSize
+        +Boolean screenReaderEnabled
+        +DateTime updatedAt
+        +updatePreferences()
+        +getReadingHistory()
+    }
+
+    class Article {
+        +UUID articleId
+        +String title
+        +String sourceUrl
+        +String sourceName
+        +Text rawContent
+        +DateTime publishedAt
+        +DateTime fetchedAt
+        +String category
+        +List~String~ tags
+        +Boolean isDuplicate
+        +UUID canonicalArticleId
+        +categorize()
+        +detectDuplicates()
+    }
+
+    class SimplifiedArticle {
+        +UUID simplifiedId
+        +UUID articleId
+        +String complexityLevel
+        +Text simplifiedContent
+        +Float semanticSimilarity
+        +DateTime generatedAt
+        +Integer processingTimeMs
+        +Boolean isCached
+        +generateSimplification()
+        +validateQuality()
+    }
+
+    class JargonTerm {
+        +UUID termId
+        +UUID articleId
+        +String term
+        +String definition
+        +String context
+        +Integer occurrenceCount
+        +detectJargon()
+        +generateDefinition()
+    }
+
+    class ReadingHistory {
+        +UUID historyId
+        +UUID userId
+        +UUID articleId
+        +String complexityLevel
+        +DateTime readAt
+        +Integer timeSpentSeconds
+        +Boolean completed
+        +recordReading()
+        +getInsights()
+    }
+
+    class Recommendation {
+        +UUID recommendationId
+        +UUID userId
+        +UUID articleId
+        +Float relevanceScore
+        +String recommendationType
+        +DateTime generatedAt
+        +Boolean wasClicked
+        +Boolean feedbackPositive
+        +Boolean feedbackNegative
+        +generateRecommendations()
+        +recordFeedback()
+    }
+
+    class TopicSubscription {
+        +UUID subscriptionId
+        +UUID userId
+        +String topic
+        +Boolean alertsEnabled
+        +String alertMethod
+        +DateTime subscribedAt
+        +subscribe()
+        +unsubscribe()
+    }
+
+    class Alert {
+        +UUID alertId
+        +UUID subscriptionId
+        +UUID articleId
+        +String alertType
+        +Boolean isBreakingNews
+        +DateTime sentAt
+        +Boolean wasDelivered
+        +Boolean wasRead
+        +sendAlert()
+        +markAsRead()
+    }
+
+    class ArticleFeedback {
+        +UUID feedbackId
+        +UUID userId
+        +UUID simplifiedId
+        +Boolean clarityRating
+        +String feedbackType
+        +String feedbackText
+        +DateTime submittedAt
+        +submitFeedback()
+        +analyzeFeedback()
+    }
+
+    class FlaggedDefinition {
+        +UUID flagId
+        +UUID termId
+        +UUID userId
+        +String reason
+        +DateTime flaggedAt
+        +Boolean isResolved
+        +flagDefinition()
+        +resolve()
+    }
+
+    User "1" -- "1" UserProfile : has
+    User "1" -- "0..*" ReadingHistory : generates
+    User "1" -- "0..*" Recommendation : receives
+    User "1" -- "0..*" TopicSubscription : subscribes to
+    User "1" -- "0..*" ArticleFeedback : provides
+    User "1" -- "0..*" FlaggedDefinition : flags
+
+    Article "1" -- "0..*" SimplifiedArticle : has versions
+    Article "1" -- "0..*" JargonTerm : contains
+    Article "0..*" -- "0..1" Article : duplicates
+    Article "1" -- "0..*" ReadingHistory : read by users
+    Article "1" -- "0..*" Recommendation : recommended in
+
+    SimplifiedArticle "1" -- "0..*" ArticleFeedback : receives
+
+    JargonTerm "1" -- "0..*" FlaggedDefinition : flagged as
+
+    TopicSubscription "1" -- "0..*" Alert : triggers
+
+    Alert "1" -- "1" Article : notifies about

@@ -1,0 +1,21 @@
+﻿Sprint 1 Burndown,,,,,,Sprint 1 Count,Sprint 2 Count
+,,,,,,121,152
+Day of Sprint,Work Remaining (Story Points),Ideal Line,,,,,
+0,121,121,,"note: ideally get ahead early, more room for lag at end",,,
+7,121,95,,,,,
+14,121,75,,updated note: we got off on the wrong foot and didn't start until 2 weeks into the official sprint start,,,
+21,105,62,,"We did complete what feels like a lot, but it deviated from the specific story items and we did a lot for non-functional requirements which were not accounted for in the initial story point estimation",,,
+28,99,40,,,,,
+35,94,20,,,,,
+42,78,0,,,,,
+,,,,,,,
+Sprint 2 Burndown,,,,,,Sprint 1 Count,Sprint 2 Count
+,,,,,,43,230
+Day of Sprint,Work Remaining (Story Points),Ideal Line,,,,,
+0,230,230,,,,,
+7,,195,,note: get the AI model sorted between sprints so we can knock off things in chunks,,,
+14,,160,,,,,
+21,,120,,,,,
+28,,80,,,,,
+35,,40,,,,,
+42,,0,,,,,

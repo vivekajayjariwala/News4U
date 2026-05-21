@@ -1,0 +1,94 @@
+     table_name      |      column_name      |          data_type          | is_nullable |          column_default           
+---------------------+-----------------------+-----------------------------+-------------+-----------------------------------
+ alerts              | alert_id              | uuid                        | NO          | 
+ alerts              | subscription_id       | uuid                        | NO          | 
+ alerts              | article_id            | uuid                        | NO          | 
+ alerts              | alert_type            | character varying           | NO          | 
+ alerts              | is_breaking_news      | boolean                     | NO          | false
+ alerts              | sent_at               | timestamp without time zone | NO          | now()
+ alerts              | was_delivered         | boolean                     | NO          | false
+ alerts              | was_read              | boolean                     | NO          | false
+ article_feedback    | feedback_id           | uuid                        | NO          | 
+ article_feedback    | user_id               | uuid                        | NO          | 
+ article_feedback    | simplified_id         | uuid                        | NO          | 
+ article_feedback    | clarity_rating        | boolean                     | NO          | 
+ article_feedback    | feedback_type         | character varying           | NO          | 'clarity'::character varying
+ article_feedback    | feedback_text         | text                        | YES         | 
+ article_feedback    | submitted_at          | timestamp without time zone | NO          | now()
+ articles            | article_id            | uuid                        | NO          | 
+ articles            | title                 | character varying           | NO          | 
+ articles            | source_url            | text                        | NO          | 
+ articles            | source_name           | character varying           | NO          | 
+ articles            | raw_content           | text                        | NO          | 
+ articles            | published_at          | timestamp without time zone | NO          | 
+ articles            | fetched_at            | timestamp without time zone | NO          | now()
+ articles            | category              | character varying           | NO          | 
+ articles            | tags                  | ARRAY                       | YES         | '{}'::text[]
+ articles            | is_duplicate          | boolean                     | NO          | false
+ articles            | canonical_article_id  | uuid                        | YES         | 
+ flagged_definitions | flag_id               | uuid                        | NO          | 
+ flagged_definitions | term_id               | uuid                        | NO          | 
+ flagged_definitions | user_id               | uuid                        | NO          | 
+ flagged_definitions | reason                | text                        | YES         | 
+ flagged_definitions | flagged_at            | timestamp without time zone | NO          | now()
+ flagged_definitions | is_resolved           | boolean                     | NO          | false
+ jargon_terms        | term_id               | uuid                        | NO          | 
+ jargon_terms        | article_id            | uuid                        | NO          | 
+ jargon_terms        | term                  | character varying           | NO          | 
+ jargon_terms        | definition            | text                        | NO          | 
+ jargon_terms        | context               | text                        | YES         | 
+ jargon_terms        | occurrence_count      | integer                     | NO          | 1
+ reading_history     | history_id            | uuid                        | NO          | 
+ reading_history     | user_id               | uuid                        | NO          | 
+ reading_history     | article_id            | uuid                        | NO          | 
+ reading_history     | complexity_level      | character varying           | NO          | 
+ reading_history     | read_at               | timestamp without time zone | NO          | now()
+ reading_history     | time_spent_seconds    | integer                     | YES         | 
+ reading_history     | completed             | boolean                     | NO          | false
+ recommendations     | recommendation_id     | uuid                        | NO          | 
+ recommendations     | user_id               | uuid                        | NO          | 
+ recommendations     | article_id            | uuid                        | NO          | 
+ recommendations     | relevance_score       | double precision            | NO          | 
+ recommendations     | recommendation_type   | character varying           | NO          | 
+ recommendations     | generated_at          | timestamp without time zone | NO          | now()
+ recommendations     | was_clicked           | boolean                     | NO          | false
+ recommendations     | feedback_positive     | boolean                     | YES         | 
+ recommendations     | feedback_negative     | boolean                     | YES         | 
+ refresh_tokens      | token_id              | uuid                        | NO          | 
+ refresh_tokens      | user_id               | uuid                        | NO          | 
+ refresh_tokens      | token_hash            | text                        | NO          | 
+ refresh_tokens      | expires_at            | timestamp without time zone | NO          | 
+ refresh_tokens      | revoked_at            | timestamp without time zone | YES         | 
+ refresh_tokens      | created_at            | timestamp without time zone | NO          | now()
+ simplified_articles | simplified_id         | uuid                        | NO          | 
+ simplified_articles | article_id            | uuid                        | NO          | 
+ simplified_articles | complexity_level      | character varying           | NO          | 
+ simplified_articles | simplified_content    | text                        | NO          | 
+ simplified_articles | semantic_similarity   | double precision            | YES         | 
+ simplified_articles | generated_at          | timestamp without time zone | NO          | now()
+ simplified_articles | processing_time_ms    | integer                     | NO          | 
+ simplified_articles | is_cached             | boolean                     | NO          | true
+ topic_subscriptions | subscription_id       | uuid                        | NO          | 
+ topic_subscriptions | user_id               | uuid                        | NO          | 
+ topic_subscriptions | topic                 | character varying           | NO          | 
+ topic_subscriptions | alerts_enabled        | boolean                     | NO          | true
+ topic_subscriptions | alert_method          | character varying           | NO          | 'push'::character varying
+ topic_subscriptions | subscribed_at         | timestamp without time zone | NO          | now()
+ user_profiles       | profile_id            | uuid                        | NO          | 
+ user_profiles       | user_id               | uuid                        | NO          | 
+ user_profiles       | preferred_topics      | ARRAY                       | YES         | '{}'::text[]
+ user_profiles       | complexity_preference | character varying           | NO          | 'intermediate'::character varying
+ user_profiles       | high_contrast_mode    | boolean                     | NO          | false
+ user_profiles       | font_size             | integer                     | NO          | 16
+ user_profiles       | screen_reader_enabled | boolean                     | NO          | false
+ user_profiles       | updated_at            | timestamp without time zone | NO          | now()
+ user_profiles       | full_name             | character varying           | NO          | 
+ users               | user_id               | uuid                        | NO          | 
+ users               | email                 | character varying           | NO          | 
+ users               | password_hash         | character varying           | NO          | 
+ users               | created_at            | timestamp without time zone | NO          | now()
+ users               | last_login_at         | timestamp without time zone | YES         | 
+ users               | is_verified           | boolean                     | NO          | false
+ users               | is_active             | boolean                     | NO          | true
+ users               | is_admin              | boolean                     | NO          | 
+(91 rows)

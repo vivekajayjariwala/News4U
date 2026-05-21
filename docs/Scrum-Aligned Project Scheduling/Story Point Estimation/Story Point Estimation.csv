@@ -1,0 +1,45 @@
+﻿Note: Used the fibonacci scale but allowed multiple items to have the same number,,,,,
+"1,2,3,5,8,13,21,34",,,,,
+,,,,,
+Epic,Story,Task Knowledge Level,Dependencies,Effort Needed,Story Points
+User Managment,,,,,
+,Register Account,almost all,none,relatively low,1
+,Login,almost all,one,relatively low,2
+,Reset Password,almost all,some,somewhat involved,5
+,Delete Account,almost all,some,relatively low,3
+Content Aggregation,,,,,
+,Fetch News Sources,well-known,none,relatively low,3
+,Deduplicate Articles,more info needed,some,involved,13
+,Categorize Content,known,some,some effort,5
+,Timestamp Articles,known,some,somewhat involved,8
+AI-driven Adaptation & Explanations,,,,,
+,Tailor Versions,unknown,many,unknown,21
+,Switch Levels,unknown,many,unknown,21
+,Highlight Technical Terms,unknown,mid-level,involved,13
+,Provide Explanations,unknown,mid-level,involved,13
+Personalization & Recommendations,,,,,
+,Select Preferences,well-known,some,relatively low,3
+,Article Recommendations,some knowledge,mid-level,somewhat involved,8
+,Feedback on Recommendations,some knowledge,some,relatively low,5
+,Avoid Duplicate Recommendations,more info needed,mid-level,involved,13
+Search & Discovery,,,,,
+,Keyword Search,well-known,mid-level,some effort,8
+,Filter by Source,well-known,mid-level,relatively low,5
+,Filter by Date,well-known,some,relatively low,5
+,Trending Topics,more info needed,many,somewhat involved,13
+Feedback & Learning Loop,,,,,
+,Feedback on Tailored Articles,unknown,many,high,34
+,Feedback on Definitions,unknown,many,involved,21
+,Continuous Improvement,unknown,many,unknown,21
+Notifications & Alerts,,,,,
+,Subscribe to Topics,some knowledge,some,somewhat involved,8
+,Breaking News Alerts,more info needed,mid-level,unknown,13
+,Manage Alerts,well-known,some,some effort,8
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,
+,,,,,

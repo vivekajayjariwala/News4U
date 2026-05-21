@@ -1,0 +1,13 @@
+﻿,Kaura (Scrum Master),Scarlett,Sharaf,Vivek (Project Owner)
+Cloud Development Costs ,"C, I",I,"R, A",I
+Weekly Stand-up,"R, A","C, I","C, I","C, I"
+Product Backlog,"C, I","C, I","C, I","R, A"
+User Story Refinement,I,I,I,"R, A"
+UI / Frontend Development,I,"R, A",I,I
+Backend / API Integration,I,I,"R, A",I
+Database Design & Management,"R, A",R,"C, I","C, I"
+AI/ML Services (Tailoring & Explanations),R,"C, I",R,"R, A"
+Personalization & User Preferences,R,"R, A","C, I","C, I"
+Integration & Middleware,"C, I","C, I","R, A",R
+Testing & Quality Assurance,"R, A","C, I","C, I",R
+Security & Privacy,"C, I","R, A","C, I","C, I"

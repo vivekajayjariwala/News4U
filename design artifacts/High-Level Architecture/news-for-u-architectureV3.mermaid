@@ -1,0 +1,77 @@
+graph TB
+    subgraph "Client Layer"
+        WEB[Web Browser]
+    end
+
+    subgraph "Presentation Layer - React (Create React App)"
+        UI["UI Components<br/>React + JavaScript"]
+        A11Y["Accessibility Layer<br/>ARIA / WCAG"]
+        STATE["State Management<br/>React Context / Redux"]
+    end
+
+    subgraph "API Layer - Express.js"
+        GATEWAY["Express API<br/>(src/server)"]
+        AUTH["Auth Middleware<br/>JWT + validateRequest"]
+        ERR["Error & Validation Middleware"]
+    end
+
+    subgraph "Application Services"
+        subgraph "User & Profile"
+            USERMGMT["Auth & User Management<br/>controllers/authController.js"]
+            PROFILE["Profile Service<br/>controllers/profileController.js"]
+        end
+
+        subgraph "News & Content"
+            AGGR["News Controller<br/>controllers/newsController.js"]
+            GUARD["Guardian Service<br/>services/guardianService.js"]
+        end
+
+        subgraph "AI & Embeddings"
+            AI["AI Service<br/>services/aiService.js - Google Generative AI (Gemini)"]
+            EMB["Embeddings stored in DB (pgvector)"]
+        end
+
+    end
+
+    subgraph "Data Layer"
+        DB[("PostgreSQL / Yugabyte<br/>pg + pgvector for embeddings")]
+        MIG["(Migrations & Schema)"]
+    end
+
+    subgraph "External Services"
+        EX_GUARDIAN[Guardian API]
+        EX_AI["Google Generative AI (Gemini)"]
+    end
+
+    subgraph "Dev / Ops"
+        GITHUB[GitHub]
+        CI["CI / GitHub Actions (optional)"]
+        DOCKER["Docker (optional)"]
+    end
+
+    WEB --> UI
+    UI --> STATE
+    STATE --> GATEWAY
+
+    GATEWAY --> AUTH
+    GATEWAY --> ERR
+
+    AUTH --> USERMGMT
+    AUTH --> PROFILE
+
+    GATEWAY --> AGGR
+    AGGR --> GUARD
+
+    AGGR --> AI
+    AI --> EMB
+    EMB --> DB
+
+    USERMGMT --> DB
+    PROFILE --> DB
+
+    GUARD --> EX_GUARDIAN
+    AI --> EX_AI
+
+    GITHUB --> CI
+    CI --> DOCKER
+    DOCKER -.-> GATEWAY

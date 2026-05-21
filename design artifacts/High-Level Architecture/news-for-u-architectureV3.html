@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agile Alligators Architecture V2</title>
+  <style>
+    html,body { height:100%; margin:0; padding:0; }
+    .container { padding: 20px; }
+    /* Print-friendly: use full page */
+    @page { size: A4 landscape; margin: 10mm; }
+    @media print { body { -webkit-print-color-adjust: exact; } }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div id="diagram"></div>
+  </div>
+
+  <script type="text/template" id="mermaidSource">
+graph TB
+    subgraph "Client Layer"
+        WEB[Web Browser]
+        SR[Screen Reader]
+    end
+
+    subgraph "Presentation Layer - React (Create React App)"
+        UI["UI Components<br/>React + JavaScript"]
+        A11Y["Accessibility Layer<br/>ARIA / WCAG"]
+        STATE["State Management<br/>React Context / Redux"]
+    end
+
+    subgraph "API Layer - Express.js"
+        GATEWAY["Express API<br/>(src/server)"]
+        AUTH["Auth Middleware<br/>JWT + validateRequest"]
+        ERR["Error & Validation Middleware"]
+    end
+
+    subgraph "Application Services"
+        subgraph "User & Profile"
+            USERMGMT["Auth & User Management<br/>controllers/authController.js"]
+            PROFILE["Profile Service<br/>controllers/profileController.js"]
+        end
+
+        subgraph "News & Content"
+            AGGR["News Controller<br/>controllers/newsController.js"]
+            GUARD["Guardian Service<br/>services/guardianService.js"]
+        end
+
+        subgraph "AI & Embeddings"
+            AI["AI Service<br/>services/aiService.js - Google Generative AI (Gemini)"]
+            EMB["Embeddings stored in DB (pgvector)"]
+        end
+
+    end
+
+    subgraph "Data Layer"
+        DB[("PostgreSQL / Yugabyte<br/>pg + pgvector for embeddings")]
+        MIG["(Migrations & Schema)"]
+    end
+
+    subgraph "External Services"
+        EX_GUARDIAN[Guardian API]
+        EX_AI["Google Generative AI (Gemini)"]
+    end
+
+    subgraph "Dev / Ops"
+        GITHUB[GitHub]
+        CI["CI / GitHub Actions (optional)"]
+        DOCKER["Docker (optional)"]
+    end
+
+    WEB --> UI
+    UI --> STATE
+    STATE --> GATEWAY
+
+    GATEWAY --> AUTH
+    GATEWAY --> ERR
+
+    AUTH --> USERMGMT
+    AUTH --> PROFILE
+
+    GATEWAY --> AGGR
+    AGGR --> GUARD
+
+    AGGR --> AI
+    AI --> EMB
+    EMB --> DB
+
+    USERMGMT --> DB
+    PROFILE --> DB
+
+    GUARD --> EX_GUARDIAN
+    AI --> EX_AI
+
+    GITHUB --> CI
+    CI --> DOCKER
+    DOCKER -.-> GATEWAY
+    
+  </script>
+
+  <script>
+    mermaid.initialize({ startOnLoad: false, theme: 'default' });
+    const src = document.getElementById('mermaidSource').textContent.trim();
+    const container = document.getElementById('diagram');
+
+    function renderAndPrint() {
+      mermaid.render('mermaidDiagram', src, (svgCode) => {
+        container.innerHTML = svgCode;
+        // small delay to ensure rendering/layout is ready
+        setTimeout(() => {
+          // Trigger print dialog — user can choose "Save as PDF"
+          window.print();
+        }, 500);
+      });
+    }
+
+    // Render when DOM ready
+    document.addEventListener('DOMContentLoaded', renderAndPrint);
+  </script>
+</body>
+</html>

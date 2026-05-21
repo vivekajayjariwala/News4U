@@ -1,0 +1,18 @@
+This text file includes our observations of what we did well and what we can improve on next semester
+
+What we did well
+- Built out the core functionality well, we have a strong foundation
+- Spent time ensuring our back-end and front-end were set up with care, easier to configure things down the line
+- Were able delegate tasks well, and trusted each other to get things done on own time
+- Were able to congregate and bring up issues relatively quickly if it was blocking a team member's progress
+
+What we could improve
+- Miscommunications about standups, times
+- Initiative on the ML component
+- More regular feedback/meetings from advisors
+
+Planned improvements
+- Not plan meetings around class times per se. This will be easier in some ways since two people will be on exchange in three diff timezones. 
+  - Will pick a time and everyone will be accountable to stick to it
+- Will have meetings during break (between sprints) to update each other on research/progress
+- Will try to schedule bi-weekly meetings so we meet at least three times during the sprint

@@ -1,0 +1,21 @@
+﻿,Kaura (Scrum Master),Scarlett,Sharaf,Vivek (Project Owner)
+Sprint 1,,,,
+Cloud Development Costs ,I,"C, I","R, A",I
+Weekly Stand-ups,"R, A","C, I","C, I","C, I"
+Product Backlog,"C, I","R, A","C, I","R, A"
+User Story Refinement,I,"R, A",I,"C, I"
+UI / Frontend Development,"C, I","C, I",I,"R, A"
+Backend / API Integration,I,I,"R, A","C, I"
+Database Design & Management,I,"R, A","C, I",I
+Finding Suitable News API,"R, A","C, I",I,I
+Integrating Articles with UI,"R, A",I,I,"C, I"
+User Authentication,I,I,"R, A",I
+,,,,
+Sprint 2 ,,,,
+Finding Appropriate AI/ML Services,R,"C, I","R, A","R, A"
+Scraping Articles from Original Websites,"R, A",I,I,"C, I"
+Integrating Articles with AI Tailoring,"C, I","C, I","C, I","R, A"
+Integrating Highlighted Text Explanations,"C, I","R, A","C, I","C, I"
+Personalization & User Preferences,I,"C, I","R, A",I
+Testing & Quality Assurance,"R, A",R,"C, I","C, I"
+Security & Privacy,"C, I","C, I","R, A","A, C"

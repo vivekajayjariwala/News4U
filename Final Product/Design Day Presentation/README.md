@@ -1,0 +1,1 @@
+we have attached our slideshow used during design day in this folder. additionally, we made a video showcasing our product (also linked in Supporting Materials) linked here: https://youtu.be/rgNEimRTvdk

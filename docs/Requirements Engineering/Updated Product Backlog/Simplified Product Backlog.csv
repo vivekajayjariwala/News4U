@@ -1,0 +1,41 @@
+﻿Backlog ID,Type,Title,User Story,Priority,Story Points,Acceptance Criteria,Sprint Target,Completed as of Mar 8 (ext deadline),Need?,Notes
+1.3,STORY,Verify Email,"As a user who forgot a password, I want to reset it via email, so that I can regain account access.",Medium,5,The system should verify user's emails before allowing them to log in for the first time.,1,1,must have,
+3.1,STORY,Tailor Versions,"As a user, I want tailored versions of articles so that I can understand complex topics at my current level of knowledge.",High,21,"The system tailors articles based on user’s reading history.
+Frequent readers of a topic receive shorter, less basic articles.",1,1,want to have,have button to tailor the article to simplify and then also have roadmaps based on user's reading history
+3.2,STORY,Switch Levels,"As a user, I want to switch between complexity levels (beginner/intermediate/expert) so that I can choose the detail I need.",High,21,"Each article can be simplified into 3 levels: beginner, intermediate, expert.
+Switching levels updates the text instantly.
+Simplified text preserves the key facts of the original.",1,1,want to have,have button to simplify article but doesn't tailor between the three levels
+3.3,STORY,Highlight Technical Terms,"As a user, I want technical terms highlighted so that I can easily spot unfamiliar words.",High,13,"The system automatically highlights jargon or complex terms.
+Highlighted terms have consistent visual formatting.",1,1,nice to have,
+4.2,STORY,Article Recommendations,"As a user, I want recommendations based on my reading history so that I discover new articles.",,8,"The system suggests 3–5 related articles per session.
+Recommendations are displayed below or alongside the current article.",2,1,nice to have,articles are based on roadmpas
+4.3,STORY,Feedback on Recommendations,"As a user, I want to give feedback on recommendations so that the system improves future suggestions.",,5,"Users can mark recommendations as “useful” or “not useful.”
+Feedback updates the recommendation model.",2,0,want to have,we're not doing feedback
+4.4,STORY,Avoid Duplicate Recommendations,"As a user, I don’t want to be recommended articles I’ve already read so that my feed stays fresh.",,13,Articles already read are not recommended again.,2,1,want to have,can add to read history and nothing from read history goes to roadmaps
+5.1,STORY,Keyword Search,"As a user, I want to search by keyword so that I can find specific topics.",,8,"The search bar accepts text queries.
+Results appear within 2 seconds.
+Search results show title, source, and snippet.",2,1,must have,
+5.3,STORY,Filter by Date,"As a user, I want to filter by date so that I can find the latest news.",,5,"Users can select a date range.
+Only articles within the range are displayed.",1,1,must have,
+5.4,STORY,Trending Topics,"As a user, I want trending topics suggested so that I can see what’s popular.",,13,"A trending list shows the top 5 most-read topics.
+Trending topics update at least once per hour.",2,1,nice to have,trending topics on the home page
+6.1,STORY,Feedback on Tailored Articles,"As a user, I want to give quick Yes/No feedback on simplified articles so that the system can improve how it adjusts content for my reading level.",,34,"Each simplified article displays a Yes/No clarity question.
+The system records the user’s response.
+Feedback is stored and linked to the user’s profile.
+Negative feedback triggers a suggestion to try a different complexity level.",2,0,nice to have,not realistic for usage/development stage of app right now
+6.2,STORY,Feedback on Definitions,"As a user, I want to flag unclear definitions so that the system can improve the quality of explanations.",,21,"Each definition includes a “Flag as unclear” option.
+Flagged definitions are stored with user ID and timestamp.
+Admins can review flagged definitions via an internal dashboard.
+Users receive a confirmation that their feedback has been submitted.",2,0,nice to have,our advisor didn't think this should've been the focus with getting the model up and running
+6.3,STORY,Continuous Improvement,"As a platform administrator, I want all feedback to be logged and used to retrain AI models so that article simplifications and definitions continuously improve.",,21,"The system logs feedback from simplifications and flagged definitions.
+Logs include feedback type, timestamp, and user profile ID (anonymized if required).
+Feedback is exportable for model training.
+Retraining is performed on a scheduled basis (e.g., weekly).",2,0,drop,"not really training a model, just making calls, find a way to store feedback and pass it - not feasible for this project"
+7.2,STORY,Breaking News Alerts,"As a user, I want to receive breaking news alerts within my subscribed topics so that I stay updated in real time.",,13,"Breaking news is detected and alerts are sent within 5 minutes of publication.
+Alerts are delivered by push notification or email depending on user preference.
+Alerts include article title, source, and link.
+Duplicate alerts for the same event are not sent.",2,1,must have,weekly alerts on selected alert topics
+7.3,STORY,Manage Alerts,"As a user, I want to manage my news alerts so that I only receive notifications that are relevant to me.",,8,"Users can enable or disable alerts in settings.
+Disabled topics stop generating notifications immediately.
+Users can choose delivery method (email, push, none).
+Changes to alert settings are applied instantly.",2,1,must have,can choose diff topics for alerts

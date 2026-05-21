@@ -1,0 +1,147 @@
+classDiagram
+    %% News-for-U Domain Model V2 — generated from src/Prototypes/server/migrations/schema.sql
+    %% Reflects persisted tables and key relationships (roadmaps, clippings, article complexity, embeddings)
+
+    class User {
+        +UUID user_id
+        +String email
+        +String password_hash
+        +Boolean is_verified
+        +Boolean is_active
+        +Boolean is_admin
+        +DateTime last_login_at
+        +DateTime created_at
+        +register()
+        +login()
+        +deactivate()
+    }
+
+    class UserProfile {
+        +UUID profile_id
+        +UUID user_id
+        +String full_name
+        +Text[] preferred_topics
+        +String complexity_preference
+        +Boolean high_contrast_mode
+        +String font_size
+        +Boolean screen_reader_enabled
+        +DateTime updated_at
+        +DateTime created_at
+        +updatePreferences()
+    }
+
+    class RefreshToken {
+        +UUID token_id
+        +UUID user_id
+        +String token_hash
+        +DateTime expires_at
+        +DateTime revoked_at
+        +DateTime created_at
+        +revoke()
+    }
+
+    class Article {
+        +Integer id
+        +String guardian_id
+        +Text title
+        +Text body
+        +String author
+        +DateTime published_at
+        +String topic
+        +Text url
+        +Text image
+        +vector embedding
+        +DateTime created_at
+        +ingest()
+        +generateEmbedding()
+    }
+
+    class ArticleComplexity {
+        +Integer id
+        +Integer article_id
+        +String complexity_label
+        +Numeric complexity_score
+        +String model
+        +JSONB raw_scores
+        +DateTime created_at
+        +compute()
+    }
+
+    class Roadmap {
+        +UUID roadmap_id
+        +UUID user_id
+        +Text name
+        +Integer source_article_id
+        +UUID public_id
+        +Integer total_items
+        +Integer completed_items
+        +String status
+        +Text description
+        +Text query_terms
+        +String fetch_status
+        +DateTime created_at
+        +create()
+    }
+
+    class RoadmapItem {
+        +Integer id
+        +UUID roadmap_id
+        +Integer article_id
+        +Integer step_order
+        +String complexity_label
+        +Numeric complexity_score
+        +DateTime created_at
+        +add()
+    }
+
+    class UserInteraction {
+        +Integer id
+        +UUID user_id
+        +Integer article_id
+        +String action
+        +JSONB metadata
+        +DateTime created_at
+        +recordAction()
+    }
+
+    class Clipping {
+        +UUID clipping_id
+        +UUID user_id
+        +Text title
+        +UUID public_id
+        +DateTime created_at
+        +create()
+    }
+
+    class ClippingItem {
+        +Integer id
+        +UUID clipping_id
+        +Integer article_id
+        +DateTime created_at
+        +add()
+    }
+
+    %% Relationships (foreign keys & cardinality)
+    User "1" -- "0..1" UserProfile : has
+    User "1" -- "0..*" RefreshToken : issues
+    User "1" -- "0..*" Roadmap : owns
+    User "1" -- "0..*" Clipping : owns
+    User "1" -- "0..*" UserInteraction : performs
+
+    Article "1" -- "0..*" ArticleComplexity : has
+    Article "1" -- "0..*" RoadmapItem : referenced_by
+    Article "1" -- "0..*" ClippingItem : included_in
+    Article "1" -- "0..*" UserInteraction : interacted_with
+
+    Roadmap "1" -- "0..*" RoadmapItem : contains
+    Clipping "1" -- "0..*" ClippingItem : contains
+
+    UserProfile "1" -- "1" User : belongs_to
+    RefreshToken "*" -- "1" User : belongs_to
+    UserInteraction "*" -- "1" User : by
+    UserInteraction "*" -- "1" Article : on
+
+    %% Notes
+    note for Article "Embedding stored in `articles.embedding` as pgvector (3072 dims in this schema copy)."
+    note for ArticleComplexity "Cached complexity snapshots stored in `article_complexity` for fast lookup."
+    note for Roadmap "Roadmaps and Clippings are shareable via `public_id` and preserve frozen complexity snapshots in items."

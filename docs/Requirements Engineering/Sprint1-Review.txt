@@ -1,0 +1,16 @@
+Based on verbal feedback from our advisors (evaluation to be submitted directly to course evaluator), we took the following away
+- Pleased with our progress
+- Want us to spend more energy on figuring out the LLM situation
+- Advisors recommended working OpenAI on a small (<$30) budget, instead of trying to find a free LLM we can customize
+- Posed questions to us about how we are going to make article recommendations based on user's view history
+- Asked us about how we are pulling news from APIs and when to save to our database
+  - In response we explained we were using APIs, but have realized that most free ones leave out the article content which poses a separate issue
+
+Our identifiable next steps include:
+- Investigate Cohere API key for ML (maybe we use student Gemini??)
+- Switch to News API (instead of CurrentsAPI) so we can have more metadata 
+- 'Add topic' button, allowing different knowledge levels per topic
+- Email Verification
+- Having separate page if Admin is verified with Admin features
+- Figuring out legality and how to scrape articles' content off URL
+- Article simplification & explanations using ML

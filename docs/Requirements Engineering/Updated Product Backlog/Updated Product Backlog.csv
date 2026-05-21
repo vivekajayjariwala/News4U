@@ -1,0 +1,85 @@
+﻿Backlog ID,Type,Title,User Story,Priority,Story Points,Acceptance Criteria,Sprint Target,Completed?,,,Need?
+1,EPIC,User Managment,N/A,High,N/A,N/A,N/A,,,,
+1.1,STORY,Register Account,"As a new user, I want to register an account with my email and password, so that I can access features.",High,1,"A registration form accepts a valid email and password.
+The system rejects emails already in use with a clear error message.
+The system rejects passwords that do not meet security requirements with a clear error message.
+On success, a verification email is sent to the user.
+Upon successful email verification, the user is prompted to log in.",1,1,,,
+1.2,STORY,Login,"As a returning user, I want to log in with my email and password, so that I can access my account.",High,2,"A login form accepts a valid registered email and password.
+On success, the user is redirected to the dashboard within 2 seconds.
+On failure, an error message states “Email or password is incorrect” without revealing which field is wrong.
+The system enforces lockout after 5 consecutive failed attempts for 15 minutes.
+Session terminates after 30 minutes of inactivity and requires re-authentication.",1,1,,,
+1.3,STORY,Verify Email,"As a user who forgot a password, I want to reset it via email, so that I can regain account access.",Medium,5,The system should verify user's emails before allowing them to log in for the first time.,1,0,,,must have
+1.4,STORY,Delete Account,"As a user who no longer wants to use the services, I want to permanently delete my account so that my personal data is erased and no longer stored.",Low,3,"The system provides an option for the user to permanently delete their account from the settings page.
+The user is asked to confirm the deletion action (e.g., via password re-entry or confirmation dialog).
+On confirmation, the account and all associated personal data are removed from the system.
+The user receives a confirmation message or email stating that the account has been deleted.
+The system prevents login with deleted credentials after account deletion.
+Any active sessions are terminated immediately upon account deletion.
+Non-personal, anonymized data (e.g., analytics, aggregated logs) may be retained but is no longer linked to the deleted account.",1,1,,,
+2,EPIC,Content Aggregation,N/A,High,N/A,N/A,N/A,,,,
+2.1,STORY,Fetch News Sources,"As a user, I want the system to fetch articles from multiple news sources so that I can access diverse perspectives.",High,3,"The system fetches articles from at least 3 external sources via API or RSS.
+Fetching occurs automatically every 15 minutes.
+The system logs errors when a source fails.",1,1,,,
+2.2,STORY,Deduplicate Articles,"As a user, I want duplicate articles removed so that I don’t see the same story repeated.",High,13,"Articles with identical content or headlines are detected and merged.
+Only the most complete version of a duplicated article is shown.",1,1,,,
+2.3,STORY,Categorize Content,"As a user, I want articles categorized by topic so that I can browse news that interests me.",High,5,"Articles are automatically tagged with a topic (e.g., politics, tech, health).
+Users can filter articles by topic.",1,1,,,
+2.4,STORY,Timestamp Articles,"As a user, I want to see publication timestamps so that I know how current an article is.",High,8,"All articles display publication date and time.
+Articles are ordered by recency by default.",1,1,,,
+3,EPIC,AI-driven Adaptation & Explanations,N/A,High,N/A,N/A,N/A,,,,
+3.1,STORY,Tailor Versions,"As a user, I want tailored versions of articles so that I can understand complex topics at my current level of knowledge.",High,21,"The system tailors articles based on user’s reading history.
+Frequent readers of a topic receive shorter, less basic articles.",1,0,what we're doing now lowk makes more sense w what's feasible and reasonable,"button to rewrite to simple, more technical, LLM does when button pressed, new table",want to have
+3.2,STORY,Switch Levels,"As a user, I want to switch between complexity levels (beginner/intermediate/expert) so that I can choose the detail I need.",High,21,"Each article can be simplified into 3 levels: beginner, intermediate, expert.
+Switching levels updates the text instantly.
+Simplified text preserves the key facts of the original.",1,0,,^^ would also work,want to have
+3.3,STORY,Highlight Technical Terms,"As a user, I want technical terms highlighted so that I can easily spot unfamiliar words.",High,13,"The system automatically highlights jargon or complex terms.
+Highlighted terms have consistent visual formatting.",1,0,,,nice to have
+3.4,STORY,Provide Explanations,"As a user, I want definitions shown in tooltips/popups so that I can learn without leaving the article.",High,13,"Definitions are shown via popup or expandable text.
+Popups do not block the main reading flow.
+Definitions are concise and relevant to the context.",1,1,,,
+4,EPIC,Personalization & Recommendations,N/A,Medium,N/A,N/A,2,,,,
+4.1,STORY,Select Preferences,"As a user, I want to select my preferred topics so that I get relevant news.",,3,"Users can choose preferred topics during onboarding.
+Preferences can be updated anytime in settings.",1,1,,,
+4.2,STORY,Article Recommendations,"As a user, I want recommendations based on my reading history so that I discover new articles.",,8,"The system suggests 3–5 related articles per session.
+Recommendations are displayed below or alongside the current article.",2,0,"roadmaps already exist, tbd if this incl anything else",,nice to have
+4.3,STORY,Feedback on Recommendations,"As a user, I want to give feedback on recommendations so that the system improves future suggestions.",,5,"Users can mark recommendations as “useful” or “not useful.”
+Feedback updates the recommendation model.",2,0,have ui but doesn't do anything,,want to have
+4.4,STORY,Avoid Duplicate Recommendations,"As a user, I don’t want to be recommended articles I’ve already read so that my feed stays fresh.",,13,Articles already read are not recommended again.,2,0,"can add (click read when you get to end of article, writes down what seen before)",,want to have
+5,EPIC,Search & Discovery,N/A,Medium,N/A,N/A,2,,,,
+5.1,STORY,Keyword Search,"As a user, I want to search by keyword so that I can find specific topics.",,8,"The search bar accepts text queries.
+Results appear within 2 seconds.
+Search results show title, source, and snippet.",2,0,easy to add,,must have
+5.2,STORY,Filter by Source,"As a user, I want to filter by source so that I can read from publishers I trust.",,5,"Users can restrict results to a specific source.
+The filter applies instantly without reloading the page.",1,1,"chose Guardian api , one source doesn't make sense to have as separate features",,
+5.3,STORY,Filter by Date,"As a user, I want to filter by date so that I can find the latest news.",,5,"Users can select a date range.
+Only articles within the range are displayed.",1,0,easy to add,,must have
+5.4,STORY,Trending Topics,"As a user, I want trending topics suggested so that I can see what’s popular.",,13,"A trending list shows the top 5 most-read topics.
+Trending topics update at least once per hour.",2,0,w user history we can select 5 most read within date range,,nice to have
+6,EPIC,Feedback & Learning Loop,N/A,Medium,N/A,N/A,2,,,,
+6.1,STORY,Feedback on Tailored Articles,"As a user, I want to give quick Yes/No feedback on simplified articles so that the system can improve how it adjusts content for my reading level.",,34,"Each simplified article displays a Yes/No clarity question.
+The system records the user’s response.
+Feedback is stored and linked to the user’s profile.
+Negative feedback triggers a suggestion to try a different complexity level.",2,0,not realistic for usage/development stage of app right now,try to do this,nice to have
+6.2,STORY,Feedback on Definitions,"As a user, I want to flag unclear definitions so that the system can improve the quality of explanations.",,21,"Each definition includes a “Flag as unclear” option.
+Flagged definitions are stored with user ID and timestamp.
+Admins can review flagged definitions via an internal dashboard.
+Users receive a confirmation that their feedback has been submitted.",2,0,our advisor didn't think this should've been the focus with getting the model up and running,flag unclear definitions,nice to have
+6.3,STORY,Continuous Improvement,"As a platform administrator, I want all feedback to be logged and used to retrain AI models so that article simplifications and definitions continuously improve.",,21,"The system logs feedback from simplifications and flagged definitions.
+Logs include feedback type, timestamp, and user profile ID (anonymized if required).
+Feedback is exportable for model training.
+Retraining is performed on a scheduled basis (e.g., weekly).",2,0,"not really training a model, just making calls, find a way to store feedback and pass it - not feasible for this project",,drop
+7,EPIC,Notifications & Alerts,N/A,Medium,N/A,N/A,2,,,,
+7.1,STORY,Subscribe to Topics,"As a user, I want to subscribe to specific topics so that I receive alerts for news that interests me.",,8,"Users can subscribe to at least 3 preferred topics.
+Topic subscriptions are saved to the user’s profile.
+Users can add or remove subscriptions anytime.
+Alerts only include subscribed topics.",2,1,already do w the sign  up,,
+7.2,STORY,Breaking News Alerts,"As a user, I want to receive breaking news alerts within my subscribed topics so that I stay updated in real time.",,13,"Breaking news is detected and alerts are sent within 5 minutes of publication.
+Alerts are delivered by push notification or email depending on user preference.
+Alerts include article title, source, and link.
+Duplicate alerts for the same event are not sent.",2,0,"alr pull recent news, pull articles quickly","11 default categories, change to match categories given to interests then we can send emails",must have
+7.3,STORY,Manage Alerts,"As a user, I want to manage my news alerts so that I only receive notifications that are relevant to me.",,8,"Users can enable or disable alerts in settings.
+Disabled topics stop generating notifications immediately.
+Users can choose delivery method (email, push, none).
+Changes to alert settings are applied instantly.",2,0,,ui page that would unsubscribe from certain topics' notifications,must have
